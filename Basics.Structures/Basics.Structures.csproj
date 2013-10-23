@@ -37,6 +37,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="DynamicConnectivity\QuickFind.cs" />
+    <Compile Include="DynamicConnectivity\QuickUnion.cs" />
     <Compile Include="DynamicConnectivity\UnionFind.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

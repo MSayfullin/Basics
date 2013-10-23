@@ -19,6 +19,13 @@ namespace Basics.Structures.Tests
             ReflexiveCheck(quickFind);
         }
 
+        [TestMethod]
+        public void QuickUnion_ReflexiveCheck()
+        {
+            var quickFind = new QuickUnion(10);
+            ReflexiveCheck(quickFind);
+        }
+
         private void SymmetricCheck(UnionFind unionFind)
         {
             unionFind.Union(1, 6);
@@ -32,6 +39,13 @@ namespace Basics.Structures.Tests
         public void QuickFind_SymmetricCheck()
         {
             var quickFind = new QuickFind(10);
+            SymmetricCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_SymmetricCheck()
+        {
+            var quickFind = new QuickUnion(10);
             SymmetricCheck(quickFind);
         }
 
@@ -52,6 +66,13 @@ namespace Basics.Structures.Tests
             TransitiveCheck(quickFind);
         }
 
+        [TestMethod]
+        public void QuickUnion_TransitiveCheck()
+        {
+            var quickFind = new QuickUnion(10);
+            TransitiveCheck(quickFind);
+        }
+
         private void TwoSitesCheck(UnionFind unionFind)
         {
             unionFind.Union(2, 8);
@@ -64,6 +85,13 @@ namespace Basics.Structures.Tests
         public void QuickFind_TwoSites()
         {
             var quickFind = new QuickFind(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_TwoSites()
+        {
+            var quickFind = new QuickUnion(10);
             TwoSitesCheck(quickFind);
         }
 
@@ -86,6 +114,13 @@ namespace Basics.Structures.Tests
         public void QuickFind_AllConnected()
         {
             var quickFind = new QuickFind(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_AllConnected()
+        {
+            var quickFind = new QuickUnion(10);
             AllConnectedCheck(quickFind);
         }
     }
