@@ -17,5 +17,10 @@ namespace Basics.Structures.DynamicConnectivity
 
         public abstract bool IsConnected(int p, int q);
         public abstract void Union(int p, int q);
+
+        public int Size()
+        {
+            return elements.Length;
+        }
     }
 }
