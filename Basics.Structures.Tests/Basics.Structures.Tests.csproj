@@ -55,6 +55,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Basics.Structures\Basics.Structures.csproj">
+      <Project>{41be2291-69e9-4973-8218-0a0f265d5caa}</Project>
+      <Name>Basics.Structures</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

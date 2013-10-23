@@ -55,6 +55,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Basics.Algorithms\Basics.Algorithms.csproj">
+      <Project>{38564d11-98d8-4088-ae44-1b32ad543caa}</Project>
+      <Name>Basics.Algorithms</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>
