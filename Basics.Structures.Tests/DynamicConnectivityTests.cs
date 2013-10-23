@@ -33,6 +33,13 @@ namespace Basics.Structures.Tests
             ReflexiveCheck(quickFind);
         }
 
+        [TestMethod]
+        public void WeightedQuickUnionEx_ReflexiveCheck()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            ReflexiveCheck(quickFind);
+        }
+
         private void SymmetricCheck(UnionFind unionFind)
         {
             unionFind.Union(1, 6);
@@ -60,6 +67,13 @@ namespace Basics.Structures.Tests
         public void WeightedQuickUnion_SymmetricCheck()
         {
             var quickFind = new WeightedQuickUnion(10);
+            SymmetricCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_SymmetricCheck()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
             SymmetricCheck(quickFind);
         }
 
@@ -94,6 +108,13 @@ namespace Basics.Structures.Tests
             TransitiveCheck(quickFind);
         }
 
+        [TestMethod]
+        public void WeightedQuickUnionEx_TransitiveCheck()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            TransitiveCheck(quickFind);
+        }
+
         private void TwoSitesCheck(UnionFind unionFind)
         {
             unionFind.Union(2, 8);
@@ -120,6 +141,13 @@ namespace Basics.Structures.Tests
         public void WeightedQuickUnion_TwoSites()
         {
             var quickFind = new WeightedQuickUnion(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_TwoSites()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
             TwoSitesCheck(quickFind);
         }
 
@@ -156,6 +184,13 @@ namespace Basics.Structures.Tests
         public void WeightedQuickUnion_AllConnected()
         {
             var quickFind = new WeightedQuickUnion(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_AllConnected()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
             AllConnectedCheck(quickFind);
         }
     }
