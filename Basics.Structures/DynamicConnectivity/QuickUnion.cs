@@ -26,6 +26,7 @@ namespace Basics.Structures.DynamicConnectivity
         public override bool IsConnected(int p, int q)
         {
             return Root(p) == Root(q);
+            //return RootRecursive(p) == RootRecursive(q);
         }
 
         public override void Union(int p, int q)
@@ -34,6 +35,8 @@ namespace Basics.Structures.DynamicConnectivity
             // so we can easily use them to navigate inside array
             var pRoot = Root(p);
             var qRoot = Root(q);
+            //var pRoot = RootRecursive(p);
+            //var qRoot = RootRecursive(q);
             elements[pRoot] = qRoot;
         }
     }

@@ -2,6 +2,9 @@
 
 namespace Basics.Structures.DynamicConnectivity
 {
+    /// <summary>
+    /// Weighted QuickUnion with Path Compression
+    /// </summary>
     public class WeightedQuickUnionEx : WeightedQuickUnion
     {
         public WeightedQuickUnionEx(int size) : base(size)

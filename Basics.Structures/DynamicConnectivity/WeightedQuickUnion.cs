@@ -18,7 +18,7 @@ namespace Basics.Structures.DynamicConnectivity
         public override void Union(int p, int q)
         {
             EthalonImplementation(p, q);
-            // OptimizedVersion(p, q);
+            //OptimizedVersion(p, q);
         }
 
         private void EthalonImplementation(int p, int q)
@@ -27,6 +27,8 @@ namespace Basics.Structures.DynamicConnectivity
             // so we can easily use them to navigate inside array
             var pRoot = Root(p);
             var qRoot = Root(q);
+            //var pRoot = RootRecursive(p);
+            //var qRoot = RootRecursive(q);
             if (sizes[pRoot] < sizes[qRoot])
             {
                 elements[pRoot] = qRoot;
@@ -45,6 +47,8 @@ namespace Basics.Structures.DynamicConnectivity
             // so we can easily use them to navigate inside array
             var xRoot = Root(p);
             var yRoot = Root(q);
+            //var xRoot = RootRecursive(p);
+            //var yRoot = RootRecursive(q);
             if (sizes[xRoot] >= sizes[yRoot])
             {
                 var tmp = yRoot;
