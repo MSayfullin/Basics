@@ -8,7 +8,7 @@ namespace Basics.Structures.DynamicConnectivity
         {
         }
 
-        private int RootRecursive(int x)
+        protected int RootRecursive(int x)
         {
             int xid = elements[x];
             if (x == xid)
@@ -16,7 +16,7 @@ namespace Basics.Structures.DynamicConnectivity
             return RootRecursive(xid);
         }
 
-        private int Root(int x)
+        protected int Root(int x)
         {
             while (x != elements[x])
                 x = elements[x];

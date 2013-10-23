@@ -39,6 +39,7 @@
     <Compile Include="DynamicConnectivity\QuickFind.cs" />
     <Compile Include="DynamicConnectivity\QuickUnion.cs" />
     <Compile Include="DynamicConnectivity\UnionFind.cs" />
+    <Compile Include="DynamicConnectivity\WeightedQuickUnion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
