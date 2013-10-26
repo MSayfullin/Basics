@@ -89,7 +89,7 @@ namespace Basics.Structures
             }
         }
 
-        private class LinkedListEnumerator<X> : IEnumerator<X>
+        private struct LinkedListEnumerator<X> : IEnumerator<X>
         {
             private readonly Node<X> _head;
             private Node<X> _current;
