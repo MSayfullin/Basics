@@ -6,47 +6,13 @@ namespace Basics.Structures.Tests
     [TestClass]
     public class DynamicConnectivityTests
     {
-        private void ReflexiveCheck(UnionFind unionFind)
-        {
-            Assert.IsTrue(unionFind.IsConnected(2, 2));
-            Assert.IsFalse(unionFind.IsConnected(4, 7));
-        }
+        #region Quick Find
 
         [TestMethod]
         public void QuickFind_ReflexiveCheck()
         {
             var quickFind = new QuickFind(10);
             ReflexiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void QuickUnion_ReflexiveCheck()
-        {
-            var quickFind = new QuickUnion(10);
-            ReflexiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnion_ReflexiveCheck()
-        {
-            var quickFind = new WeightedQuickUnion(10);
-            ReflexiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnionEx_ReflexiveCheck()
-        {
-            var quickFind = new WeightedQuickUnionEx(10);
-            ReflexiveCheck(quickFind);
-        }
-
-        private void SymmetricCheck(UnionFind unionFind)
-        {
-            unionFind.Union(1, 6);
-
-            Assert.IsTrue(unionFind.IsConnected(1, 6));
-            Assert.IsTrue(unionFind.IsConnected(6, 1));
-            Assert.IsFalse(unionFind.IsConnected(3, 9));
         }
 
         [TestMethod]
@@ -57,10 +23,74 @@ namespace Basics.Structures.Tests
         }
 
         [TestMethod]
+        public void QuickFind_TransitiveCheck()
+        {
+            var quickFind = new QuickFind(10);
+            TransitiveCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickFind_TwoSites()
+        {
+            var quickFind = new QuickFind(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickFind_AllConnected()
+        {
+            var quickFind = new QuickFind(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        #endregion
+
+        #region Quick Union
+
+        [TestMethod]
+        public void QuickUnion_ReflexiveCheck()
+        {
+            var quickFind = new QuickUnion(10);
+            ReflexiveCheck(quickFind);
+        }
+
+        [TestMethod]
         public void QuickUnion_SymmetricCheck()
         {
             var quickFind = new QuickUnion(10);
             SymmetricCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_TransitiveCheck()
+        {
+            var quickFind = new QuickUnion(10);
+            TransitiveCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_TwoSites()
+        {
+            var quickFind = new QuickUnion(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void QuickUnion_AllConnected()
+        {
+            var quickFind = new QuickUnion(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        #endregion
+
+        #region Weighted Quick Union
+
+        [TestMethod]
+        public void WeightedQuickUnion_ReflexiveCheck()
+        {
+            var quickFind = new WeightedQuickUnion(10);
+            ReflexiveCheck(quickFind);
         }
 
         [TestMethod]
@@ -71,10 +101,82 @@ namespace Basics.Structures.Tests
         }
 
         [TestMethod]
+        public void WeightedQuickUnion_TransitiveCheck()
+        {
+            var quickFind = new WeightedQuickUnion(10);
+            TransitiveCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnion_TwoSites()
+        {
+            var quickFind = new WeightedQuickUnion(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnion_AllConnected()
+        {
+            var quickFind = new WeightedQuickUnion(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        #endregion
+
+        #region Weighted Quick Union with Path Compression
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_ReflexiveCheck()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            ReflexiveCheck(quickFind);
+        }
+
+        [TestMethod]
         public void WeightedQuickUnionEx_SymmetricCheck()
         {
             var quickFind = new WeightedQuickUnionEx(10);
             SymmetricCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_TransitiveCheck()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            TransitiveCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_TwoSites()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            TwoSitesCheck(quickFind);
+        }
+
+        [TestMethod]
+        public void WeightedQuickUnionEx_AllConnected()
+        {
+            var quickFind = new WeightedQuickUnionEx(10);
+            AllConnectedCheck(quickFind);
+        }
+
+        #endregion
+
+        #region Checks
+
+        private void ReflexiveCheck(UnionFind unionFind)
+        {
+            Assert.IsTrue(unionFind.IsConnected(2, 2));
+            Assert.IsFalse(unionFind.IsConnected(4, 7));
+        }
+
+        private void SymmetricCheck(UnionFind unionFind)
+        {
+            unionFind.Union(1, 6);
+
+            Assert.IsTrue(unionFind.IsConnected(1, 6));
+            Assert.IsTrue(unionFind.IsConnected(6, 1));
+            Assert.IsFalse(unionFind.IsConnected(3, 9));
         }
 
         private void TransitiveCheck(UnionFind unionFind)
@@ -87,68 +189,12 @@ namespace Basics.Structures.Tests
             Assert.IsFalse(unionFind.IsConnected(1, 5));
         }
 
-        [TestMethod]
-        public void QuickFind_TransitiveCheck()
-        {
-            var quickFind = new QuickFind(10);
-            TransitiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void QuickUnion_TransitiveCheck()
-        {
-            var quickFind = new QuickUnion(10);
-            TransitiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnion_TransitiveCheck()
-        {
-            var quickFind = new WeightedQuickUnion(10);
-            TransitiveCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnionEx_TransitiveCheck()
-        {
-            var quickFind = new WeightedQuickUnionEx(10);
-            TransitiveCheck(quickFind);
-        }
-
         private void TwoSitesCheck(UnionFind unionFind)
         {
             unionFind.Union(2, 8);
 
             Assert.IsTrue(unionFind.IsConnected(2, 8));
             Assert.IsFalse(unionFind.IsConnected(1, 5));
-        }
-
-        [TestMethod]
-        public void QuickFind_TwoSites()
-        {
-            var quickFind = new QuickFind(10);
-            TwoSitesCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void QuickUnion_TwoSites()
-        {
-            var quickFind = new QuickUnion(10);
-            TwoSitesCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnion_TwoSites()
-        {
-            var quickFind = new WeightedQuickUnion(10);
-            TwoSitesCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnionEx_TwoSites()
-        {
-            var quickFind = new WeightedQuickUnionEx(10);
-            TwoSitesCheck(quickFind);
         }
 
         private void AllConnectedCheck(UnionFind unionFind)
@@ -166,32 +212,6 @@ namespace Basics.Structures.Tests
             Assert.IsTrue(unionFind.IsConnected(0, 9));
         }
 
-        [TestMethod]
-        public void QuickFind_AllConnected()
-        {
-            var quickFind = new QuickFind(10);
-            AllConnectedCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void QuickUnion_AllConnected()
-        {
-            var quickFind = new QuickUnion(10);
-            AllConnectedCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnion_AllConnected()
-        {
-            var quickFind = new WeightedQuickUnion(10);
-            AllConnectedCheck(quickFind);
-        }
-
-        [TestMethod]
-        public void WeightedQuickUnionEx_AllConnected()
-        {
-            var quickFind = new WeightedQuickUnionEx(10);
-            AllConnectedCheck(quickFind);
-        }
+        #endregion
     }
 }

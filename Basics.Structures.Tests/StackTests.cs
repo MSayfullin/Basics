@@ -6,13 +6,7 @@ namespace Basics.Structures.Tests
     [TestClass]
     public class StackTests
     {
-        private void CheckEmptyIEnumerator<T>(IStack<T> stack)
-        {
-            foreach (var item in stack)
-            {
-                Assert.Fail("Check enumerator implementation. Stack is empty.");
-            }
-        }
+        #region Stack on List
 
         [TestMethod]
         public void StackOnList_Empty_IEnumeratorTest()
@@ -21,35 +15,11 @@ namespace Basics.Structures.Tests
             CheckEmptyIEnumerator(stack);
         }
 
-        private void CheckFullIEnumerator(IStack<int> stack)
-        {
-            int counter = 10;
-            for (int i = 0; i < counter; i++)
-            {
-                stack.Push(i);
-            }
-            foreach (var item in stack)
-            {
-                Assert.AreEqual(--counter, item);
-            }
-        }
-
         [TestMethod]
         public void StackOnList_Full_IEnumeratorTest()
         {
             var stack = new StackOnList<int>();
             CheckFullIEnumerator(stack);
-        }
-
-        private void CheckPush(IStack<string> stack)
-        {
-            Assert.IsTrue(stack.IsEmpty);
-            Assert.AreEqual(0, stack.Size);
-
-            stack.Push("test");
-
-            Assert.IsFalse(stack.IsEmpty);
-            Assert.AreEqual(1, stack.Size);
         }
 
         [TestMethod]
@@ -67,6 +37,56 @@ namespace Basics.Structures.Tests
             stack.Pop();
         }
 
+        [TestMethod]
+        public void StackOnList_PopTest()
+        {
+            var stack = new StackOnList<string>();
+            CheckPop(stack);
+        }
+
+        [TestMethod]
+        public void StackOnList_MultiplePopTest()
+        {
+            var stack = new StackOnList<string>();
+            CheckMultiplePop(stack);
+        }
+
+        #endregion
+
+        #region Checks
+
+        private void CheckEmptyIEnumerator<T>(IStack<T> stack)
+        {
+            foreach (var item in stack)
+            {
+                Assert.Fail("Check enumerator implementation. Stack is empty.");
+            }
+        }
+
+        private void CheckFullIEnumerator(IStack<int> stack)
+        {
+            int counter = 10;
+            for (int i = 0; i < counter; i++)
+            {
+                stack.Push(i);
+            }
+            foreach (var item in stack)
+            {
+                Assert.AreEqual(--counter, item);
+            }
+        }
+
+        private void CheckPush(IStack<string> stack)
+        {
+            Assert.IsTrue(stack.IsEmpty);
+            Assert.AreEqual(0, stack.Size);
+
+            stack.Push("test");
+
+            Assert.IsFalse(stack.IsEmpty);
+            Assert.AreEqual(1, stack.Size);
+        }
+
         private void CheckPop(IStack<string> stack)
         {
             var testData = "test";
@@ -77,13 +97,6 @@ namespace Basics.Structures.Tests
             Assert.IsTrue(stack.IsEmpty);
             Assert.AreEqual(0, stack.Size);
             Assert.AreEqual(testData, poppedData);
-        }
-
-        [TestMethod]
-        public void StackOnList_PopTest()
-        {
-            var stack = new StackOnList<string>();
-            CheckPop(stack);
         }
 
         private void CheckMultiplePop(IStack<string> stack)
@@ -109,11 +122,6 @@ namespace Basics.Structures.Tests
             Assert.AreEqual(testData, poppedData);
         }
 
-        [TestMethod]
-        public void StackOnList_MultiplePopTest()
-        {
-            var stack = new StackOnList<string>();
-            CheckMultiplePop(stack);
-        }
+        #endregion
     }
 }
