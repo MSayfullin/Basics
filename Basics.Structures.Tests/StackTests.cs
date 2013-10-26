@@ -12,14 +12,21 @@ namespace Basics.Structures.Tests
         public void StackOnList_Empty_IEnumeratorTest()
         {
             var stack = new StackOnList<int>();
-            CheckEmptyIEnumerator(stack);
+            CheckEmptyEnumerator(stack);
         }
 
         [TestMethod]
         public void StackOnList_Full_IEnumeratorTest()
         {
             var stack = new StackOnList<int>();
-            CheckFullIEnumerator(stack);
+            CheckFullEnumerator(stack);
+        }
+
+        [TestMethod]
+        public void StackOnList_Double_IEnumeratorTest()
+        {
+            var stack = new StackOnList<int>();
+            CheckDoubleEnumerator(stack);
         }
 
         [TestMethod]
@@ -55,7 +62,7 @@ namespace Basics.Structures.Tests
 
         #region Checks
 
-        private void CheckEmptyIEnumerator<T>(IStack<T> stack)
+        private void CheckEmptyEnumerator<T>(IStack<T> stack)
         {
             foreach (var item in stack)
             {
@@ -63,7 +70,7 @@ namespace Basics.Structures.Tests
             }
         }
 
-        private void CheckFullIEnumerator(IStack<int> stack)
+        private void CheckFullEnumerator(IStack<int> stack)
         {
             int counter = 10;
             for (int i = 0; i < counter; i++)
@@ -73,6 +80,26 @@ namespace Basics.Structures.Tests
             foreach (var item in stack)
             {
                 Assert.AreEqual(--counter, item);
+            }
+        }
+
+        private void CheckDoubleEnumerator(IStack<int> stack)
+        {
+            const int limit = 10;
+            int counter1 = limit;
+            for (int i = 0; i < counter1; i++)
+            {
+                stack.Push(i);
+            }
+            int counter2 = limit;
+            foreach (var item1 in stack)
+            {
+                Assert.AreEqual(--counter1, item1);
+                foreach (var item2 in stack)
+                {
+                    Assert.AreEqual(--counter2, item2);
+                }
+                counter2 = limit;
             }
         }
 
