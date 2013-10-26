@@ -60,6 +60,60 @@ namespace Basics.Structures.Tests
 
         #endregion
 
+        #region Stack on Array
+
+        [TestMethod]
+        public void StackOnArray_Empty_IEnumeratorTest()
+        {
+            var stack = new StackOnArray<int>();
+            CheckEmptyEnumerator(stack);
+        }
+
+        [TestMethod]
+        public void StackOnArray_Full_IEnumeratorTest()
+        {
+            var stack = new StackOnArray<int>();
+            CheckFullEnumerator(stack);
+        }
+
+        [TestMethod]
+        public void StackOnArray_Double_IEnumeratorTest()
+        {
+            var stack = new StackOnArray<int>();
+            CheckDoubleEnumerator(stack);
+        }
+
+        [TestMethod]
+        public void StackOnArray_PushTest()
+        {
+            var stack = new StackOnArray<string>();
+            CheckPush(stack);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void StackOnArray_PopFromEmptyStackTest()
+        {
+            var stack = new StackOnArray<string>();
+            stack.Pop();
+        }
+
+        [TestMethod]
+        public void StackOnArray_PopTest()
+        {
+            var stack = new StackOnArray<string>();
+            CheckPop(stack);
+        }
+
+        [TestMethod]
+        public void StackOnArray_MultiplePopTest()
+        {
+            var stack = new StackOnArray<string>();
+            CheckMultiplePop(stack);
+        }
+
+        #endregion
+
         #region Checks
 
         private void CheckEmptyEnumerator<T>(IStack<T> stack)
@@ -132,8 +186,20 @@ namespace Basics.Structures.Tests
             stack.Push(testData);
             stack.Push("otherData");
             stack.Push("anotherData");
+            stack.Push("moreData");
+            stack.Push("evenMoreData");
 
             var poppedData = stack.Pop();
+            Assert.IsFalse(stack.IsEmpty);
+            Assert.AreEqual(4, stack.Size);
+            Assert.AreNotEqual(testData, poppedData);
+
+            poppedData = stack.Pop();
+            Assert.IsFalse(stack.IsEmpty);
+            Assert.AreEqual(3, stack.Size);
+            Assert.AreNotEqual(testData, poppedData);
+
+            poppedData = stack.Pop();
             Assert.IsFalse(stack.IsEmpty);
             Assert.AreEqual(2, stack.Size);
             Assert.AreNotEqual(testData, poppedData);

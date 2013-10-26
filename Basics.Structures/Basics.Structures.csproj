@@ -43,6 +43,7 @@
     <Compile Include="DynamicConnectivity\WeightedQuickUnion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stacks\IStack.cs" />
+    <Compile Include="Stacks\StackOnArray.cs" />
     <Compile Include="Stacks\StackOnList.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
