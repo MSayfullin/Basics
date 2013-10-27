@@ -59,6 +59,7 @@
     <Compile Include="BinarySearchTests.cs" />
     <Compile Include="ArrayExtensionsTests.cs" />
     <Compile Include="SelectionSortTests.cs" />
+    <Compile Include="SortingPerformanceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Basics.Algorithms\Basics.Algorithms.csproj">
