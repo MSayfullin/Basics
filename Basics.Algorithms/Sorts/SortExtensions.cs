@@ -2,7 +2,7 @@
 
 namespace Basics.Algorithms.Sorts
 {
-    public static class ArrayExtensions
+    public static class SortExtensions
     {
         public static bool IsLessThan<T>(this IComparable<T> source, T value)
         {
@@ -22,13 +22,6 @@ namespace Basics.Algorithms.Sorts
         public static bool IsGreaterThan(this IComparable source, object value)
         {
             return source.CompareTo(value) > 0;
-        }
-
-        public static void Exchange<T>(this T[] source, int i, int j)
-        {
-            var tmp = source[i];
-            source[i] = source[j];
-            source[j] = tmp;
         }
 
         /// <summary>
