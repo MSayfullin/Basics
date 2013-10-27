@@ -23,6 +23,13 @@ namespace Basics.Structures.Tests
         }
 
         [TestMethod]
+        public void StackOnList_Full_AfterPop_IEnumeratorTest()
+        {
+            var stack = new StackOnList<int>();
+            CheckFullEnumeratorAfterPop(stack);
+        }
+
+        [TestMethod]
         public void StackOnList_Double_IEnumeratorTest()
         {
             var stack = new StackOnList<int>();
@@ -74,6 +81,13 @@ namespace Basics.Structures.Tests
         {
             var stack = new StackOnArray<int>();
             CheckFullEnumerator(stack);
+        }
+
+        [TestMethod]
+        public void StackOnArray_Full_AfterPop_IEnumeratorTest()
+        {
+            var stack = new StackOnArray<int>();
+            CheckFullEnumeratorAfterPop(stack);
         }
 
         [TestMethod]
@@ -131,6 +145,22 @@ namespace Basics.Structures.Tests
             {
                 stack.Push(i);
             }
+            foreach (var item in stack)
+            {
+                Assert.AreEqual(--counter, item);
+            }
+        }
+
+        private void CheckFullEnumeratorAfterPop(IStack<int> stack)
+        {
+            int counter = 10;
+            for (int i = 0; i < counter; i++)
+            {
+                stack.Push(i);
+            }
+            stack.Pop();
+            stack.Pop();
+            counter -= 2;
             foreach (var item in stack)
             {
                 Assert.AreEqual(--counter, item);
