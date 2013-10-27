@@ -6,6 +6,67 @@ namespace Basics.Structures.Tests
     [TestClass]
     public class QueueTests
     {
+        #region Queue on List
+
+        [TestMethod]
+        public void QueueOnList_Empty_IEnumeratorTest()
+        {
+            var queue = new QueueOnList<int>();
+            CheckEmptyEnumerator(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnList_Full_IEnumeratorTest()
+        {
+            var queue = new QueueOnList<int>();
+            CheckFullEnumerator(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnList_Full_AfterDequeue_IEnumeratorTest()
+        {
+            var queue = new QueueOnList<int>();
+            CheckFullEnumeratorAfterDequeue(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnList_Double_IEnumeratorTest()
+        {
+            var queue = new QueueOnList<int>();
+            CheckDoubleEnumerator(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnList_EnqueueTest()
+        {
+            var queue = new QueueOnList<string>();
+            CheckEnqueue(queue);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void QueueOnList_DequeueFromEmptyQueueTest()
+        {
+            var queue = new QueueOnList<string>();
+            queue.Dequeue();
+        }
+
+        [TestMethod]
+        public void QueueOnList_DequeueTest()
+        {
+            var queue = new QueueOnList<string>();
+            CheckDequeue(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnList_MultipleDequeueTest()
+        {
+            var queue = new QueueOnList<string>();
+            CheckMultipleDequeue(queue);
+        }
+
+        #endregion
+
         #region Queue on Array
 
         [TestMethod]
