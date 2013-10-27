@@ -34,11 +34,11 @@ namespace Basics.Algorithms.Tests
 
             foreach (var sort in sorts)
             {
-                //var unsortedArray = sortedArray.Shuffle();
+                sortedArray.Shuffle();
                 stopwatch.Restart();
                 sort.Act(sortedArray);
                 stopwatch.Stop();
-                Console.WriteLine("{0}: {1}", sort.Name, stopwatch.ElapsedTicks);
+                Console.WriteLine("{0}:\t{1}", sort.Name, stopwatch.ElapsedTicks);
             }
         }
 
