@@ -39,6 +39,7 @@
     <Compile Include="BinarySearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sorts\ArrayExtensions.cs" />
+    <Compile Include="Sorts\Insertion.cs" />
     <Compile Include="Sorts\Selection.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
