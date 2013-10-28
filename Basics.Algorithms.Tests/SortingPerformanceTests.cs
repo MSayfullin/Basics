@@ -30,6 +30,7 @@ namespace Basics.Algorithms.Tests
                 new SortInfo { Name = "Selection Sort", Act = array => Selection.Sort(array) },
                 new SortInfo { Name = "Insertion Sort", Act = array => Insertion.Sort(array) },
                 new SortInfo { Name = "Shell Sort", Act = array => Shell.Sort(array) },
+                new SortInfo { Name = "Mergesort", Act = array => Merge.Sort(array) }
             };
 
             foreach (var sort in sorts)
@@ -41,6 +42,5 @@ namespace Basics.Algorithms.Tests
                 Console.WriteLine("{0}:\t{1}", sort.Name, stopwatch.ElapsedTicks);
             }
         }
-
     }
 }
