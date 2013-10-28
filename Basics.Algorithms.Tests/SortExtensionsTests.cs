@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Basics.Algorithms.Tests
 {
     [TestClass]
-    public class ArrayExtensionsTests
+    public class SortExtensionsTests
     {
         [TestMethod]
         public void Int_TestIsSorted()
