@@ -22,6 +22,20 @@ namespace Basics.Algorithms.Tests
         }
 
         [TestMethod]
+        public void Int_TestRangeIsSorted()
+        {
+            var array = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            Assert.IsTrue(array.IsSorted(5, 9));
+        }
+
+        [TestMethod]
+        public void Int_TestRangeIsNotSorted()
+        {
+            var array = new int[] { 0, 3, 9, 1, 4, 5, 2, 7, 8, 6 };
+            Assert.IsFalse(array.IsSorted(5, 9));
+        }
+
+        [TestMethod]
         public void Double_TestIsSorted()
         {
             var array = new double[] { 0, 1.0, 2.1, 3.3, 4, 5, 6, 7, 8, 9 };
