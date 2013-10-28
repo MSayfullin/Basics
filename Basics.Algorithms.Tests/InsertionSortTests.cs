@@ -39,6 +39,14 @@ namespace Basics.Algorithms.Tests
         }
 
         [TestMethod]
+        public void InsertionSortRange_Int_TestOnUnsortedArray()
+        {
+            var array = new int[] { 0, 3, 9, 1, 4, 5, 2, 7, 8, 6 };
+            Insertion.Sort(array, 5, 9);
+            Assert.IsTrue(array.IsSorted(5, 9));
+        }
+
+        [TestMethod]
         public void InsertionSort_Int_TestOnUnsortedArrayWithDuplicates()
         {
             var array = new int[] { 0, 3, 9, 7, 1, 4, 5, 2, 7, 8, 6, 3, 1 };

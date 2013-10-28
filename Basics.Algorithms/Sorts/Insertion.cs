@@ -7,7 +7,12 @@ namespace Basics.Algorithms.Sorts
         public static void Sort<T>(T[] array) where T : IComparable<T>
         {
             //EthalonImplementation(array);
-            ImplementationWithWhile(array);
+            ImplementationWithWhile(array, 0, array.Length - 1);
+        }
+
+        public static void Sort<T>(T[] array, int lo, int hi) where T : IComparable<T>
+        {
+            ImplementationWithWhile(array, lo, hi);
         }
 
         private static void EthalonImplementation<T>(T[] array) where T : IComparable<T>
@@ -23,12 +28,12 @@ namespace Basics.Algorithms.Sorts
             }
         }
 
-        private static void ImplementationWithWhile<T>(T[] array) where T : IComparable<T>
+        private static void ImplementationWithWhile<T>(T[] array, int lo, int hi) where T : IComparable<T>
         {
-            for (int i = 1; i < array.Length; i++)
+            for (int i = lo + 1; i <= hi; i++)
             {
                 int j = i;
-                while (j > 0 && array[j].IsLessThan(array[j - 1]))
+                while (j > lo && array[j].IsLessThan(array[j - 1]))
                 {
                     array.Exchange(j, j - 1);
                     j--;
