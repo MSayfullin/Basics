@@ -31,6 +31,14 @@ namespace Basics.Algorithms.Tests
         }
 
         [TestMethod]
+        public void ShellSort_Int_TestOnReverseSortedArray()
+        {
+            var array = new int[] { 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            Shell.Sort(array);
+            Assert.IsTrue(array.IsSorted());
+        }
+
+        [TestMethod]
         public void ShellSort_Int_TestOnUnsortedArray()
         {
             var array = new int[] { 12, 0, 3, 9, 1, 10, 4, 15, 5, 2, 13, 7, 8, 6, 11, 14 };

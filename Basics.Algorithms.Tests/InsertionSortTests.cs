@@ -31,6 +31,14 @@ namespace Basics.Algorithms.Tests
         }
 
         [TestMethod]
+        public void InsertionSort_Int_TestOnReverseSortedArray()
+        {
+            var array = new int[] { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
+            Insertion.Sort(array);
+            Assert.IsTrue(array.IsSorted());
+        }
+
+        [TestMethod]
         public void InsertionSort_Int_TestOnUnsortedArray()
         {
             var array = new int[] { 0, 3, 9, 1, 4, 5, 2, 7, 8, 6 };
