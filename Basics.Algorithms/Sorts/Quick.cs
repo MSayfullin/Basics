@@ -22,9 +22,9 @@ namespace Basics.Algorithms.Sorts
 
         private static int Partition<T>(T[] array, int lo, int hi) where T : IComparable<T>
         {
-            T v = array[lo];
             int i = lo;
             int j = hi + 1;
+            var v = array[lo];
             while (true)
             {
                 while (array[++i].IsLessThan(v))
