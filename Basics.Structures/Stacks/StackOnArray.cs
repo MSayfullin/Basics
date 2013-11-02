@@ -19,7 +19,7 @@ namespace Basics.Structures
             _elements[index++] = value;
 
             if (index == _elements.Length)
-                Resize(_elements.Length * 2);
+                _elements = _elements.ResizeTo(_elements.Length * 2);
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Basics.Structures
             _elements[index] = default(T);
 
             if (_elements.Length > initialSize && index == _elements.Length / 4)
-                Resize(_elements.Length / 2);
+                _elements = _elements.ResizeTo(_elements.Length / 2);
 
             return element;
         }
@@ -55,16 +55,6 @@ namespace Basics.Structures
         public int Size
         {
             get { return index; }
-        }
-
-        private void Resize(int newSize)
-        {
-            var newArray = new T[newSize];
-            for (int i = 0; i < index; i++)
-            {
-                newArray[i] = _elements[i];
-            }
-            _elements = newArray;
         }
 
         #region IEnumerable Members
