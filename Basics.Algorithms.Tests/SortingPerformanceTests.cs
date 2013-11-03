@@ -34,7 +34,8 @@ namespace Basics.Algorithms.Tests
                 new SortInfo { Name = "Shell Sort", Act = array => Shell.Sort(array), Enabled = false },
                 new SortInfo { Name = "Mergesort", Act = array => Merge.Sort(array), Enabled = true },
                 new SortInfo { Name = "Quicksort", Act = array => Quick.Sort(array), Enabled = true },
-                new SortInfo { Name = "3-way Quicksort", Act = array => Quick3Way.Sort(array), Enabled = true }
+                new SortInfo { Name = "3-way Quicksort", Act = array => Quick3Way.Sort(array), Enabled = true },
+                new SortInfo { Name = "Heapsort", Act = array => Heap.Sort(array), Enabled = true }
             };
 
             foreach (var sort in sorts.Where(s => s.Enabled))
