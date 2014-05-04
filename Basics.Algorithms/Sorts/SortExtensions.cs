@@ -4,26 +4,6 @@ namespace Basics.Algorithms.Sorts
 {
     public static class SortExtensions
     {
-        public static bool IsLessThan<T>(this IComparable<T> source, T value)
-        {
-            return source.CompareTo(value) < 0;
-        }
-
-        public static bool IsGreaterThan<T>(this IComparable<T> source, T value)
-        {
-            return source.CompareTo(value) > 0;
-        }
-
-        public static bool IsLessThan(this IComparable source, object value)
-        {
-            return source.CompareTo(value) < 0;
-        }
-
-        public static bool IsGreaterThan(this IComparable source, object value)
-        {
-            return source.CompareTo(value) > 0;
-        }
-
         /// <summary>
         /// Checks whether array is sorted.
         /// Empty and arrays with one element are consedered as sorted.
