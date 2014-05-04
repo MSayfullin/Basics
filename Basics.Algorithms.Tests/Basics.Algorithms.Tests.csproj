@@ -54,6 +54,7 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="HeapsortTests.cs" />
+    <Compile Include="InversionCountTests.cs" />
     <Compile Include="Quick3WaySortTests.cs" />
     <Compile Include="MergesortTests.cs" />
     <Compile Include="QuicksortTests.cs" />
