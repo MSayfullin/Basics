@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Basics.Algorithms
+namespace Basics.Structures
 {
     public static class IComparableExtensions
     {

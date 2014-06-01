@@ -42,6 +42,7 @@
     <Compile Include="DynamicConnectivity\QuickUnion.cs" />
     <Compile Include="DynamicConnectivity\UnionFind.cs" />
     <Compile Include="DynamicConnectivity\WeightedQuickUnion.cs" />
+    <Compile Include="IComparableExtensions.cs" />
     <Compile Include="LinkedListBase.cs" />
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,12 +52,6 @@
     <Compile Include="Stacks\IStack.cs" />
     <Compile Include="Stacks\StackOnArray.cs" />
     <Compile Include="Stacks\StackOnList.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Basics.Algorithms\Basics.Algorithms.csproj">
-      <Project>{38564d11-98d8-4088-ae44-1b32ad543caa}</Project>
-      <Name>Basics.Algorithms</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

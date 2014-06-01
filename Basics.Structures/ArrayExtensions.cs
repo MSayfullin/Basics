@@ -2,8 +2,18 @@
 
 namespace Basics.Structures
 {
-    internal static class ArrayExtensions
+    public static class ArrayExtensions
     {
+        /// <summary>
+        /// Swaps two elements of an array inplace.
+        /// </summary>
+        public static void Exchange<T>(this T[] source, int i, int j)
+        {
+            var tmp = source[i];
+            source[i] = source[j];
+            source[j] = tmp;
+        }
+
         /// <summary>
         /// Resizes array to the given new size.
         /// </summary>

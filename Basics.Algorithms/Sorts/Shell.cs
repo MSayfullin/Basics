@@ -1,4 +1,5 @@
 ﻿using System;
+using Basics.Structures;
 
 namespace Basics.Algorithms.Sorts
 {

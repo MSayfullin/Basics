@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using Basics.Structures;
 
 namespace Basics.Algorithms
 {

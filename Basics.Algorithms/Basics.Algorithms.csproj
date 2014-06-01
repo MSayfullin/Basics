@@ -36,12 +36,10 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="ArrayExtensions.cs" />
     <Compile Include="BinarySearch.cs" />
     <Compile Include="Inversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ShuffleExtensions.cs" />
-    <Compile Include="IComparableExtensions.cs" />
     <Compile Include="Sorts\Heap.cs" />
     <Compile Include="Sorts\Quick3Way.cs" />
     <Compile Include="Sorts\Merge.cs" />
@@ -50,6 +48,12 @@
     <Compile Include="Sorts\Shell.cs" />
     <Compile Include="Sorts\Insertion.cs" />
     <Compile Include="Sorts\Selection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Basics.Structures\Basics.Structures.csproj">
+      <Project>{41be2291-69e9-4973-8218-0a0f265d5caa}</Project>
+      <Name>Basics.Structures</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
