@@ -57,7 +57,7 @@ namespace Basics.Algorithms
                     array[k] = aux[j++];
                 else if (j > hi)
                     array[k] = aux[i++];
-                else if (aux[i].CompareTo(aux[j]) <= 0) // is less than or equal
+                else if (aux[i].IsLessThanOrEqual(aux[j]))
                     array[k] = aux[i++];
                 else
                 {
