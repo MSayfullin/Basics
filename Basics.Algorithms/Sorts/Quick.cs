@@ -35,9 +35,24 @@ namespace Basics.Algorithms.Sorts
         {
             if (hi <= lo) return;
 
-            int j = Partition(array, lo, hi);
+            int j = SimplePartition(array, lo, hi);
             Sort(array, lo, j - 1);
             Sort(array, j + 1, hi);
+        }
+
+        private static int SimplePartition<T>(T[] array, int lo, int hi) where T : IComparable<T>
+        {
+            int i = lo;
+            var pivot = array[lo];
+            for (int j = lo + 1; j <= hi; j++)
+            {
+                if (array[j].IsLessThan(pivot))
+                {
+                    array.Exchange(++i, j);
+                }
+            }
+            array.Exchange(lo, i);
+            return i;
         }
 
         private static int Partition<T>(T[] array, int lo, int hi) where T : IComparable<T>
