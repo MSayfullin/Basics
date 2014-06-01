@@ -8,29 +8,6 @@ namespace Basics.Algorithms.Tests
     [TestClass]
     public class InversionCountTests
     {
-        private const string DataFilePath = @"Data\IntegerArray.txt";
-
-        private static List<int> _integers = new List<int>();
-
-        [ClassInitialize]
-        [DeploymentItem(DataFilePath)]
-        public static void LoadTestData(TestContext context)
-        {
-            using (var file = File.OpenText(DataFilePath))
-            {
-                while (!file.EndOfStream)
-	            {
-                    int val;
-                    var str = file.ReadLine();
-                    if (!str.StartsWith("#") && Int32.TryParse(str, out val))
-                    {
-                        _integers.Add(val);
-                    }
-                }
-                Assert.AreEqual(100000, _integers.Count);
-            }
-        }
-
         [TestMethod]
         public void InversionCount_BruteForce_Int_TestOnEmptyArray()
         {
@@ -166,11 +143,36 @@ namespace Basics.Algorithms.Tests
             Assert.AreEqual(ethalon, count);
         }
 
+        #region Test On Large Data
+
         [TestMethod]
+        [DeploymentItem(@"Data\IntegerArray.txt")]
         public void InversionCount_Int_TestOnLargeData()
         {
-            var count = Inversion.Count(_integers.ToArray());
+            var integers = LoadIntegers();
+            var count = Inversion.Count(integers);
             Assert.AreEqual(2407905288, count);
         }
+
+        private static int[] LoadIntegers()
+        {
+            var integers = new List<int>();
+            using (var file = File.OpenText("IntegerArray.txt"))
+            {
+                while (!file.EndOfStream)
+                {
+                    int val;
+                    var str = file.ReadLine();
+                    if (!str.StartsWith("#") && Int32.TryParse(str, out val))
+                    {
+                        integers.Add(val);
+                    }
+                }
+                Assert.AreEqual(100000, integers.Count);
+            }
+            return integers.ToArray();
+        }
+
+        #endregion
     }
 }
