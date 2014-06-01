@@ -12,23 +12,31 @@ namespace Basics.Algorithms.Sorts
             Sort(array, 0, array.Length - 1);
         }
 
+        /// <summary>
+        /// Returns k-th minimum element from an array.
+        /// </summary>
+        /// <param name="k">Numerical order of an element to return</param>
         public static T Select<T>(T[] array, int k) where T : IComparable<T>
         {
-            array.Shuffle();
+            var copy = new T[array.Length];
+            array.CopyTo(copy, 0);
+
+            copy.Shuffle();
 
             int lo = 0;
-            int hi = array.Length - 1;
+            int hi = copy.Length - 1;
+            int zeroBasedIdx = k - 1;
             while (lo <= hi)
             {
-                int j = Partition(array, lo, hi);
-                if (j < k)
+                int j = SimplePartition(copy, lo, hi);
+                if (j < zeroBasedIdx)
                     lo = j + 1;
-                else if (j > k)
+                else if (j > zeroBasedIdx)
                     hi = j - 1;
                 else
-                    return array[k];
+                    return copy[zeroBasedIdx];
             }
-            return array[k];
+            return copy[zeroBasedIdx];
         }
 
         private static void Sort<T>(T[] array, int lo, int hi) where T : IComparable<T>
