@@ -43,6 +43,9 @@
     <Compile Include="DynamicConnectivity\UnionFind.cs" />
     <Compile Include="DynamicConnectivity\WeightedQuickUnion.cs" />
     <Compile Include="IComparableExtensions.cs" />
+    <Compile Include="Graphs\AdjacencyListGraph.cs" />
+    <Compile Include="Graphs\Edge.cs" />
+    <Compile Include="Graphs\IGraph.cs" />
     <Compile Include="LinkedListBase.cs" />
     <Compile Include="Queues\IQueue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
