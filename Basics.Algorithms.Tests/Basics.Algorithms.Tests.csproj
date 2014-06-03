@@ -53,6 +53,7 @@
     <Compile Include="..\CommonAssemblyInfo.cs">
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="GraphTests.cs" />
     <Compile Include="HeapsortTests.cs" />
     <Compile Include="InversionCountTests.cs" />
     <Compile Include="Quick3WaySortTests.cs" />
@@ -72,8 +73,15 @@
       <Project>{38564d11-98d8-4088-ae44-1b32ad543caa}</Project>
       <Name>Basics.Algorithms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Basics.Structures\Basics.Structures.csproj">
+      <Project>{41be2291-69e9-4973-8218-0a0f265d5caa}</Project>
+      <Name>Basics.Structures</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Data\UndirectedGraph.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\IntegerArray.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
