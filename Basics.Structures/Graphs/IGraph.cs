@@ -8,6 +8,7 @@ namespace Basics.Structures.Graphs
         int VertexCount { get; }
         void AddVertex(T value);
         IEnumerable<T> GetVertices();
+        IEnumerable<Edge<T>> EdgesOf(T vertex);
 
         int EdgeCount { get; }
         void AddEdge(Edge<T> edge);

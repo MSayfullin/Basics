@@ -5,12 +5,12 @@ namespace Basics.Structures.Graphs
 {
     public class AdjacencyListGraph<T> : IGraph<T> where T : IEquatable<T>
     {
-        private HashSet<T> _vertices = new HashSet<T>();
         private HashSet<Edge<T>> _edges = new HashSet<Edge<T>>();
+        private Dictionary<T, List<Edge<T>>> _edgesMap = new Dictionary<T, List<Edge<T>>>();
 
         public int VertexCount
         {
-            get { return _vertices.Count; }
+            get { return _edgesMap.Keys.Count; }
         }
 
         public void AddVertex(T vertex)
@@ -23,17 +23,22 @@ namespace Basics.Structures.Graphs
 
         private bool TryAddVertex(T vertex)
         {
-            if (_vertices.Contains(vertex))
+            if (_edgesMap.ContainsKey(vertex))
             {
                 return false;
             }
-            _vertices.Add(vertex);
+            _edgesMap.Add(vertex, new List<Edge<T>>());
             return true;
         }
 
         public IEnumerable<T> GetVertices()
         {
-            return _vertices;
+            return _edgesMap.Keys;
+        }
+
+        public IEnumerable<Edge<T>> EdgesOf(T vertex)
+        {
+            return _edgesMap[vertex];
         }
 
         public int EdgeCount
@@ -49,6 +54,11 @@ namespace Basics.Structures.Graphs
             }
         }
 
+        public void AddEdge(T source, T target)
+        {
+            AddEdge(new Edge<T>(source, target));
+        }
+
         private bool TryAddEdge(Edge<T> edge)
         {
             if (_edges.Contains(edge))
@@ -58,12 +68,8 @@ namespace Basics.Structures.Graphs
             TryAddVertex(edge.Source);
             TryAddVertex(edge.Target);
             _edges.Add(edge);
+            _edgesMap[edge.Source].Add(edge);
             return true;
-        }
-
-        public void AddEdge(T source, T target)
-        {
-            AddEdge(new Edge<T>(source, target));
         }
 
         public IEnumerable<Edge<T>> GetEdges()
