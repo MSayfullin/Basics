@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Basics.Algorithms.Graphs;
@@ -10,6 +11,103 @@ namespace Basics.Algorithms.Tests
     [TestClass]
     public class GraphTests
     {
+        #region DFS
+
+        [TestMethod]
+        public void DFS_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2);
+            graph.AddEdge(1, 3);
+            graph.AddEdge(1, 5);
+            graph.AddEdge(2, 4);
+            graph.AddEdge(2, 6);
+            graph.AddEdge(3, 7);
+            graph.AddEdge(5, 6);
+
+            int idx = 0;
+            var path = new[] { 1, 2, 4, 6, 3, 7, 5 };
+            foreach (var vertex in graph.DFS(1))
+            {
+                Assert.AreEqual(path[idx++], vertex);
+            }
+            Assert.AreEqual(7, idx);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void DFS_NoVertices_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+
+            foreach (var vertex in graph.DFS(1))
+            {
+            }
+        }
+
+        [TestMethod]
+        public void DFS_1Vertex_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddVertex(1);
+
+            foreach (var vertex in graph.DFS(1))
+            {
+                Assert.AreEqual(1, vertex);
+            }
+        }
+
+        [TestMethod]
+        public void DFSWithAction_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2);
+            graph.AddEdge(1, 3);
+            graph.AddEdge(1, 5);
+            graph.AddEdge(2, 4);
+            graph.AddEdge(2, 6);
+            graph.AddEdge(3, 7);
+            graph.AddEdge(5, 6);
+
+            int pathIdx = 0;
+            int lastVerticesIdx = 0;
+            var lastVertices = new[] { 4, 6, 7, 5 };
+            var path = new[] { 1, 2, 4, 6, 3, 7, 5 };
+            foreach (var vertex in graph.DFS(1, v => Assert.AreEqual(lastVertices[lastVerticesIdx++], v)))
+            {
+                Assert.AreEqual(path[pathIdx++], vertex);
+            }
+            Assert.AreEqual(7, pathIdx);
+            Assert.AreEqual(4, lastVerticesIdx);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void DFSWithAction_NoVertices_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+
+            foreach (var vertex in graph.DFS(1, v => { }))
+            {
+            }
+        }
+
+        [TestMethod]
+        public void DFSWithAction_1Vertex_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddVertex(1);
+
+            foreach (var vertex in graph.DFS(1, v => Assert.AreEqual(1, v)))
+            {
+                Assert.AreEqual(1, vertex);
+            }
+        }
+
+        #endregion
+
+        #region MinCut
+
         [TestMethod]
         public void MinCut_SmallGraphTest()
         {
@@ -57,5 +155,7 @@ namespace Basics.Algorithms.Tests
             }
             return graph;
         }
+
+        #endregion
     }
 }
