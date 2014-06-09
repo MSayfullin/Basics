@@ -12,18 +12,27 @@ namespace Basics.Algorithms.Graphs
             return graph.DFS(startVertex, v => { /* Do nothing */ });
         }
 
+        public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, HashSet<T> visitedVertices) where T : IEquatable<T>
+        {
+            return graph.DFS(startVertex, v => { /* Do nothing */ }, visitedVertices);
+        }
+
         public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, Action<T> lastVertexAction) where T : IEquatable<T>
         {
-            var visited = new HashSet<T>();
+            return graph.DFS(startVertex, lastVertexAction, new HashSet<T>());
+        }
+
+        public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, Action<T> lastVertexAction, HashSet<T> visitedVertices) where T : IEquatable<T>
+        {
             var stack = new StackOnList<T>();
             stack.Push(startVertex);
             T previous = startVertex;
             while (!stack.IsEmpty)
             {
                 var current = stack.Pop();
-                if (!visited.Contains(current))
+                if (!visitedVertices.Contains(current))
                 {
-                    visited.Add(current);
+                    visitedVertices.Add(current);
                     // preserve edges order
                     var edges = new List<Edge<T>>(graph.EdgesOf(current));
                     for (int i = edges.Count - 1; i >= 0; i--)
