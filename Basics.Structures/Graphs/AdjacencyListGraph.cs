@@ -8,6 +8,11 @@ namespace Basics.Structures.Graphs
         private HashSet<Edge<T>> _edges = new HashSet<Edge<T>>();
         private Dictionary<T, List<Edge<T>>> _edgesMap = new Dictionary<T, List<Edge<T>>>();
 
+        public bool IsEmpty
+        {
+            get { return _edgesMap.Count == 0; }
+        }
+
         public int VertexCount
         {
             get { return _edgesMap.Keys.Count; }
@@ -75,6 +80,16 @@ namespace Basics.Structures.Graphs
         public IEnumerable<Edge<T>> GetEdges()
         {
             return _edges;
+        }
+
+        public IGraph<T> Reverse()
+        {
+            var reversed = new AdjacencyListGraph<T>();
+            foreach (var edge in _edges)
+            {
+                reversed.AddEdge(edge.Target, edge.Source);
+            }
+            return reversed;
         }
     }
 }
