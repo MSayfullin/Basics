@@ -122,7 +122,7 @@ namespace Basics.Algorithms.Tests
             Assert.AreEqual(2, minCut.Count());
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         [DeploymentItem(@"Data\UndirectedGraph.txt")]
         public void MinCut_LargeGraphTest()
         {
