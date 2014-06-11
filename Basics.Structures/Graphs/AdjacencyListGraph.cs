@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Basics.Structures.Graphs
 {
+    [DebuggerDisplay("Vertices: {VertexCount}, Edges: {EdgeCount}")]
     public class AdjacencyListGraph<T> : IGraph<T> where T : IEquatable<T>
     {
         private HashSet<Edge<T>> _edges = new HashSet<Edge<T>>();
