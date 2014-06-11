@@ -7,18 +7,10 @@ namespace Basics.Structures.Graphs
     [DebuggerDisplay("{Source}->{Target}")]
     public class Edge<T> : IEquatable<Edge<T>> where T : IEquatable<T>
     {
-        private readonly Lazy<int> _hashCode;
-
         public Edge(T source, T target)
         {
             Source = source;
             Target = target;
-
-            _hashCode = new Lazy<int>(() =>
-            {
-                var sourceHashCode = Source.GetHashCode();
-                return ((sourceHashCode << 5) + sourceHashCode) ^ Target.GetHashCode();
-            });
         }
 
         public T Source { get; private set; }
@@ -55,7 +47,8 @@ namespace Basics.Structures.Graphs
 
         public override int GetHashCode()
         {
-            return _hashCode.Value;
+            var sourceHashCode = Source.GetHashCode();
+            return ((sourceHashCode << 5) + sourceHashCode) ^ Target.GetHashCode();
         }
 
         public override string ToString()
