@@ -14,15 +14,15 @@ namespace Basics.Algorithms.Graphs
 
         public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, HashSet<T> visitedVertices) where T : IEquatable<T>
         {
-            return graph.DFS(startVertex, v => { /* Do nothing */ }, visitedVertices);
+            return graph.DFS(startVertex, visitedVertices, v => { /* Do nothing */ });
         }
 
         public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, Action<T> lastVertexAction) where T : IEquatable<T>
         {
-            return graph.DFS(startVertex, lastVertexAction, new HashSet<T>());
+            return graph.DFS(startVertex, new HashSet<T>(), lastVertexAction);
         }
 
-        public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, Action<T> lastVertexAction, HashSet<T> visitedVertices) where T : IEquatable<T>
+        public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, HashSet<T> visitedVertices, Action<T> lastVertexAction) where T : IEquatable<T>
         {
             var stack = new StackOnList<T>();
             stack.Push(startVertex);
