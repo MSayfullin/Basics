@@ -24,7 +24,7 @@ namespace Basics.Algorithms.Graphs
 
         public static IEnumerable<T> DFS<T>(this IGraph<T> graph, T startVertex, HashSet<T> visitedVertices, Action<T> lastVertexAction) where T : IEquatable<T>
         {
-            var stack = new StackOnList<T>();
+            var stack = new StackOnArray<T>();
             stack.Push(startVertex);
             T previous = startVertex;
             while (!stack.IsEmpty)

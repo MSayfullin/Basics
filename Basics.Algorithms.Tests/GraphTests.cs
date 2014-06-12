@@ -11,7 +11,7 @@ namespace Basics.Algorithms.Tests
     [TestClass]
     public class GraphTests
     {
-        #region DFS
+        #region Depth Fisrt Search
 
         [TestMethod]
         public void DFS_SmallGraphTest()
@@ -31,7 +31,7 @@ namespace Basics.Algorithms.Tests
             {
                 Assert.AreEqual(path[idx++], vertex);
             }
-            Assert.AreEqual(7, idx);
+            Assert.AreEqual(path.Length, idx);
         }
 
         [TestMethod]
@@ -77,8 +77,8 @@ namespace Basics.Algorithms.Tests
             {
                 Assert.AreEqual(path[pathIdx++], vertex);
             }
-            Assert.AreEqual(7, pathIdx);
-            Assert.AreEqual(4, lastVerticesIdx);
+            Assert.AreEqual(path.Length, pathIdx);
+            Assert.AreEqual(lastVertices.Length, lastVerticesIdx);
         }
 
         [TestMethod]
@@ -99,6 +99,101 @@ namespace Basics.Algorithms.Tests
             graph.AddVertex(1);
 
             foreach (var vertex in graph.DFS(1, v => Assert.AreEqual(1, v)))
+            {
+                Assert.AreEqual(1, vertex);
+            }
+        }
+
+        #endregion
+
+        #region Breadth Fisrt Search
+
+        [TestMethod]
+        public void BFS_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2);
+            graph.AddEdge(1, 3);
+            graph.AddEdge(1, 5);
+            graph.AddEdge(2, 4);
+            graph.AddEdge(2, 6);
+            graph.AddEdge(3, 7);
+            graph.AddEdge(5, 6);
+
+            int idx = 0;
+            var path = new[] { 1, 2, 3, 5, 4, 6, 7 };
+            foreach (var vertex in graph.BFS(1))
+            {
+                Assert.AreEqual(path[idx++], vertex);
+            }
+            Assert.AreEqual(path.Length, idx);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void BFS_NoVertices_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+
+            foreach (var vertex in graph.BFS(1))
+            {
+            }
+        }
+
+        [TestMethod]
+        public void BFS_1Vertex_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddVertex(1);
+
+            foreach (var vertex in graph.BFS(1))
+            {
+                Assert.AreEqual(1, vertex);
+            }
+        }
+
+        [TestMethod]
+        public void BFSWithAction_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2);
+            graph.AddEdge(1, 3);
+            graph.AddEdge(1, 5);
+            graph.AddEdge(2, 4);
+            graph.AddEdge(2, 6);
+            graph.AddEdge(3, 7);
+            graph.AddEdge(5, 6);
+
+            int pathIdx = 0;
+            int lastVerticesIdx = 0;
+            var lastVertices = new[] { 4, 6, 7 };
+            var path = new[] { 1, 2, 3, 5, 4, 6, 7 };
+            foreach (var vertex in graph.BFS(1, v => Assert.AreEqual(lastVertices[lastVerticesIdx++], v)))
+            {
+                Assert.AreEqual(path[pathIdx++], vertex);
+            }
+            Assert.AreEqual(path.Length, pathIdx);
+            Assert.AreEqual(lastVertices.Length, lastVerticesIdx);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(KeyNotFoundException))]
+        public void BFSWithAction_NoVertices_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+
+            foreach (var vertex in graph.BFS(1, v => { }))
+            {
+            }
+        }
+
+        [TestMethod]
+        public void BFSWithAction_1Vertex_SmallGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddVertex(1);
+
+            foreach (var vertex in graph.BFS(1, v => Assert.AreEqual(1, v)))
             {
                 Assert.AreEqual(1, vertex);
             }

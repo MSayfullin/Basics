@@ -37,7 +37,8 @@
       <Link>Properties\CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BinarySearch.cs" />
-    <Compile Include="Graphs\DFS.cs" />
+    <Compile Include="Graphs\BreadthFirstSearch.cs" />
+    <Compile Include="Graphs\DepthFirstSearch.cs" />
     <Compile Include="Graphs\MinCut.cs" />
     <Compile Include="Inversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
