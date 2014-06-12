@@ -38,7 +38,7 @@ namespace Basics.Structures
 
             if (_elements.Length > initialSize && Size == _elements.Length / 4)
             {
-                _elements = _elements.ResizeTo(_elements.Length / 2);
+                _elements = _elements.ResizeTo(_elements.Length / 2, headIndex, tailIndex);
                 tailIndex = tailIndex - headIndex;
                 headIndex = 0;
             }

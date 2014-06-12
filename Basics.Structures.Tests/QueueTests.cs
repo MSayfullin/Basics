@@ -65,6 +65,13 @@ namespace Basics.Structures.Tests
             CheckMultipleDequeue(queue);
         }
 
+        [TestMethod]
+        public void QueueOnList_EnqueDequeueTest()
+        {
+            var queue = new QueueOnList<string>();
+            CheckEnqueDequeue(queue);
+        }
+
         #endregion
 
         #region Queue on Array
@@ -124,6 +131,13 @@ namespace Basics.Structures.Tests
         {
             var queue = new QueueOnArray<string>();
             CheckMultipleDequeue(queue);
+        }
+
+        [TestMethod]
+        public void QueueOnArray_EnqueDequeueTest()
+        {
+            var queue = new QueueOnArray<string>();
+            CheckEnqueDequeue(queue);
         }
 
         #endregion
@@ -241,6 +255,46 @@ namespace Basics.Structures.Tests
             Assert.IsTrue(queue.IsEmpty);
             Assert.AreEqual(0, queue.Size);
             Assert.AreNotEqual(testData, dequeuedData);
+        }
+
+        private void CheckEnqueDequeue(IQueue<string> queue)
+        {
+            var testData = "test";
+            queue.Enqueue(testData);
+            var otherData = "otherData";
+            queue.Enqueue(otherData);
+            var anotherData = "anotherData";
+            queue.Enqueue(anotherData);
+
+            var dequeuedData = queue.Dequeue();
+            Assert.IsFalse(queue.IsEmpty);
+            Assert.AreEqual(2, queue.Size);
+            Assert.AreEqual(testData, dequeuedData);
+
+            dequeuedData = queue.Dequeue();
+            Assert.IsFalse(queue.IsEmpty);
+            Assert.AreEqual(1, queue.Size);
+            Assert.AreEqual(otherData, dequeuedData);
+
+            var moreData = "moreData";
+            queue.Enqueue(moreData);
+            var evenMoreData = "evenMoreData";
+            queue.Enqueue(evenMoreData);
+
+            dequeuedData = queue.Dequeue();
+            Assert.IsFalse(queue.IsEmpty);
+            Assert.AreEqual(2, queue.Size);
+            Assert.AreEqual(anotherData, dequeuedData);
+
+            dequeuedData = queue.Dequeue();
+            Assert.IsFalse(queue.IsEmpty);
+            Assert.AreEqual(1, queue.Size);
+            Assert.AreEqual(moreData, dequeuedData);
+
+            dequeuedData = queue.Dequeue();
+            Assert.IsTrue(queue.IsEmpty);
+            Assert.AreEqual(0, queue.Size);
+            Assert.AreEqual(evenMoreData, dequeuedData);
         }
 
         #endregion
