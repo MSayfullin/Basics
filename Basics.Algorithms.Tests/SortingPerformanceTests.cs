@@ -9,7 +9,7 @@ namespace Basics.Algorithms.Tests
     [TestClass]
     public class SortingPerformanceTests
     {
-        private const int size = 1000000;
+        private const int size = 10000000;
 
         private class SortInfo
         {
@@ -18,7 +18,7 @@ namespace Basics.Algorithms.Tests
             public bool Enabled { get; set; }
         }
 
-        [TestMethod]
+        [TestMethod, Ignore]
         public void SortingPerformanceTest()
         {
             var stopwatch = new Stopwatch();
@@ -44,7 +44,7 @@ namespace Basics.Algorithms.Tests
                 stopwatch.Restart();
                 sort.Act(sortedArray);
                 stopwatch.Stop();
-                Console.WriteLine("{0}:\t{1}", sort.Name, stopwatch.ElapsedTicks);
+                Console.WriteLine("{0}:\t{1}", sort.Name, stopwatch.Elapsed);
             }
         }
     }
