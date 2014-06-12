@@ -6,7 +6,7 @@ using System.Globalization;
 namespace Basics.Structures.Graphs
 {
     [DebuggerDisplay("{Source}-({Weight})->{Target}")]
-    public class Edge<T> : IEquatable<Edge<T>> where T : IEquatable<T>
+    public class Edge<T> : IEquatable<Edge<T>>, IComparable<Edge<T>> where T : IEquatable<T>
     {
         public Edge(T source, T target, double weight = 1.0)
         {
@@ -58,6 +58,11 @@ namespace Basics.Structures.Graphs
         public override string ToString()
         {
             return Source + "-(" + Weight.ToString("N1", CultureInfo.CurrentCulture) + ")->" + Target;
+        }
+
+        public int CompareTo(Edge<T> other)
+        {
+            return other == null ? 1 : Weight.CompareTo(other.Weight);
         }
     }
 }
