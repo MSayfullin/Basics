@@ -61,9 +61,9 @@ namespace Basics.Structures.Graphs
             }
         }
 
-        public void AddEdge(T source, T target)
+        public void AddEdge(T source, T target, double weight = 1.0)
         {
-            AddEdge(new Edge<T>(source, target));
+            AddEdge(new Edge<T>(source, target, weight));
         }
 
         private bool TryAddEdge(Edge<T> edge)

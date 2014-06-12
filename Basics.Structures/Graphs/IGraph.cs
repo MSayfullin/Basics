@@ -14,7 +14,7 @@ namespace Basics.Structures.Graphs
 
         int EdgeCount { get; }
         void AddEdge(Edge<T> edge);
-        void AddEdge(T source, T target);
+        void AddEdge(T source, T target, double weight = 1.0);
         IEnumerable<Edge<T>> GetEdges();
 
         IGraph<T> Reverse();

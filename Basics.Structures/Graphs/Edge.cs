@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace Basics.Structures.Graphs
 {
-    [DebuggerDisplay("{Source}->{Target}")]
+    [DebuggerDisplay("{Source}-({Weight})->{Target}")]
     public class Edge<T> : IEquatable<Edge<T>> where T : IEquatable<T>
     {
-        public Edge(T source, T target)
+        public Edge(T source, T target, double weight = 1.0)
         {
             Source = source;
             Target = target;
+            Weight = weight;
         }
 
         public T Source { get; private set; }
 
         public T Target { get; private set; }
+
+        public double Weight { get; private set; }
 
         public bool IsSelfLooped
         {
@@ -53,7 +57,7 @@ namespace Basics.Structures.Graphs
 
         public override string ToString()
         {
-            return Source + "->" + Target;
+            return Source + "-(" + Weight.ToString("N1", CultureInfo.CurrentCulture) + ")->" + Target;
         }
     }
 }
