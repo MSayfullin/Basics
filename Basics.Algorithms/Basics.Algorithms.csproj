@@ -39,6 +39,7 @@
     <Compile Include="BinarySearch.cs" />
     <Compile Include="Graphs\BreadthFirstSearch.cs" />
     <Compile Include="Graphs\DepthFirstSearch.cs" />
+    <Compile Include="Graphs\DijkstraShortestPath.cs" />
     <Compile Include="Graphs\MinCut.cs" />
     <Compile Include="Inversion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

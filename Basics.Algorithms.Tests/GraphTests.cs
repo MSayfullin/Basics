@@ -221,13 +221,13 @@ namespace Basics.Algorithms.Tests
         [DeploymentItem(@"Data\UndirectedGraph.txt")]
         public void MinCut_LargeGraphTest()
         {
-            var graph = LoadGraph();
+            var graph = LoadUndirectedGraph();
             var minCut = graph.RandomizedMinCut();
             // actual MinCut is 17 because graph is undirected
             Assert.AreEqual(34, minCut.Count());
         }
 
-        private static IGraph<string> LoadGraph()
+        private static IGraph<string> LoadUndirectedGraph()
         {
             var graph = new AdjacencyListGraph<string>();
             using (var file = File.OpenText("UndirectedGraph.txt"))
@@ -243,6 +243,153 @@ namespace Basics.Algorithms.Tests
                         {
                             var target = data[i];
                             graph.AddEdge(source, target);
+                        }
+                    }
+                }
+                Assert.AreEqual(200, graph.VertexCount);
+            }
+            return graph;
+        }
+
+        #endregion
+
+        #region Dijkstra Shortest Path
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void DijkstraShortestPath_NegativeEdgeTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2, -7);
+            graph.AddEdge(2, 1, -7);
+
+            var path = graph.DijkstraShortestPath(1, 2);
+        }
+
+        [TestMethod]
+        public void DijkstraShortestPath_EmptyGraphTest()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            var path = graph.DijkstraShortestPath(1, 10);
+
+            Assert.AreEqual(0, path.Count());
+        }
+
+        [TestMethod]
+        public void DijkstraShortestPath_1to1_SmallGraphTest()
+        {
+            DijkstraShortestPath_SmallGraphTest(1, 1, new int[0], 0);
+        }
+
+        [TestMethod]
+        public void DijkstraShortestPath_1to5_SmallGraphTest()
+        {
+            DijkstraShortestPath_SmallGraphTest(1, 5, new[] { 3, 6, 5 }, 20);
+        }
+
+        [TestMethod]
+        public void DijkstraShortestPath_1to4_SmallGraphTest()
+        {
+            DijkstraShortestPath_SmallGraphTest(1, 4, new[] { 3, 4 }, 20);
+        }
+
+        private static void DijkstraShortestPath_SmallGraphTest(int start, int finish, int[] targetPath, double weight)
+        {
+            var graph = new AdjacencyListGraph<int>();
+            graph.AddEdge(1, 2, 7);
+            graph.AddEdge(2, 1, 7);
+            graph.AddEdge(1, 3, 9);
+            graph.AddEdge(3, 1, 9);
+            graph.AddEdge(1, 6, 14);
+            graph.AddEdge(6, 1, 14);
+            graph.AddEdge(2, 4, 15);
+            graph.AddEdge(4, 2, 15);
+            graph.AddEdge(3, 4, 11);
+            graph.AddEdge(4, 3, 11);
+            graph.AddEdge(3, 2, 10);
+            graph.AddEdge(2, 3, 10);
+            graph.AddEdge(6, 3, 2);
+            graph.AddEdge(3, 6, 2);
+            graph.AddEdge(6, 5, 9);
+            graph.AddEdge(5, 6, 9);
+            graph.AddEdge(5, 4, 6);
+            graph.AddEdge(4, 5, 6);
+
+            var path = graph.DijkstraShortestPath(start, finish);
+
+            var idx = 0;
+            var segmentsCount = 0;
+            var pathWeight = 0.0;
+            foreach (var edge in path)
+            {
+                segmentsCount++;
+                pathWeight += edge.Weight;
+                Assert.AreEqual(targetPath[idx++], edge.Target);
+            }
+            Assert.AreEqual(targetPath.Length, segmentsCount);
+            Assert.AreEqual(weight, pathWeight);
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"Data\WeightedUndirectedGraph.txt")]
+        public void DijkstraShortestPath_LargeGraphTest()
+        {
+            var targets = new[]
+            {
+                Tuple.Create(2, 2971.0),
+                Tuple.Create(3, 2644.0),
+                Tuple.Create(4, 3056.0),
+                Tuple.Create(5, 2525.0),
+                Tuple.Create(7, 2599.0),
+                Tuple.Create(37, 2610.0),
+                Tuple.Create(59, 2947.0),
+                Tuple.Create(82, 2052.0),
+                Tuple.Create(99, 2367.0),
+                Tuple.Create(115, 2399.0),
+                Tuple.Create(133, 2029.0),
+                Tuple.Create(165, 2442.0),
+                Tuple.Create(188, 2505.0),
+                Tuple.Create(197, 3068.0),
+                Tuple.Create(198, 1724.0),
+                Tuple.Create(199, 815.0),
+                Tuple.Create(200, 2060.0)
+            };
+            var graph = LoadWeightedGraph();
+            foreach (var target in targets)
+            {
+                var path = graph.DijkstraShortestPath(1, target.Item1);
+
+                Assert.AreEqual(target.Item2, path.Sum(p => p.Weight));
+            }
+        }
+
+        [TestMethod, Description("Checks speed of algorithm, no assertion")]
+        [DeploymentItem(@"Data\WeightedUndirectedGraph.txt")]
+        public void DijkstraShortestPath_AllVertices_LargeGraphTest()
+        {
+            var graph = LoadWeightedGraph();
+            foreach (var vertex in graph.GetVertices())
+            {
+                graph.DijkstraShortestPath(1, vertex);
+            }
+        }
+
+        private static IGraph<int> LoadWeightedGraph()
+        {
+            var graph = new AdjacencyListGraph<int>();
+            using (var file = File.OpenText("WeightedUndirectedGraph.txt"))
+            {
+                while (!file.EndOfStream)
+                {
+                    var str = file.ReadLine();
+                    if (!str.StartsWith("#"))
+                    {
+                        var data = str.Split(new[] { '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                        var source = Int32.Parse(data[0]);
+                        for (int i = 1; i < data.Length; i++)
+                        {
+                            var tuple = data[i].Split(',');
+                            graph.AddEdge(source, Int32.Parse(tuple[0]), Double.Parse(tuple[1]));
                         }
                     }
                 }
